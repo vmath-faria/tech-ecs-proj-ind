@@ -1,0 +1,8 @@
+@font-face {
+    font-family: [Futura BQ];
+    src: local("./css/fonts/futura-demi-bold.otf") format('otf');
+}
+*{
+    background-color: red;
+    font-family: "Futura BQ";    
+}
