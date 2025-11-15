@@ -3,6 +3,13 @@
     src: local("./css/fonts/futura-demi-bold.otf") format('otf');
 }
 *{
-    background-color: red;
     font-family: "Futura BQ";    
+}
+.album img{
+    height: 300px;
+    border-radius: 3px;
+}
+.membros img{
+    height: 200px;
+    border-radius: 5px;
 }
