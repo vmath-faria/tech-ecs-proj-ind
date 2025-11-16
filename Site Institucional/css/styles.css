@@ -1,9 +1,93 @@
+/* configurações básicas da página */
 @font-face {
     font-family: [Futura BQ];
     src: local("./css/fonts/futura-demi-bold.otf") format('otf');
 }
 *{
-    font-family: "Futura BQ";    
+    font-family: "Futura BQ"; 
+    box-sizing: border-box;
+    scroll-behavior: smooth;   
+}
+body{
+    margin: 0;
+}
+/* estilização do Header */
+.header {
+    background-color: #001623;
+    color: #633490;
+    padding: 10px;
+    padding-bottom: 10px;
+    top: 0;
+    position: sticky;
+    z-index: 999;
+    display: flex;
+    justify-content: space-around;
+}
+.navbar {
+    display: flex;
+    width: 500px;
+    margin-top: 19px;
+    justify-content: space-between;
+    list-style: none;
+    padding-top: 10px;
+}
+.navbar a{
+    text-decoration: none;
+    color: #633490;
+}
+.logincadastro{
+    justify-content: space-around;
+    display: flex;
+    list-style: none;
+    font-size: x-large;
+}
+.logincadastro a{
+    margin: 10px;
+    margin-left: 50px;
+    text-decoration: none;
+    color: #633490;
+}
+.header img{
+    height: 70px;
+    padding-top: 7px;
+}
+/* estilização do Index */
+/* estilização do Banner */
+.banner{
+    background-image: url('../css/imgs/bannerimg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 875px;
+    width: 100%;
+    font-size: 25px;
+    color: #FF1027;
+    margin-top: 0px;
+}
+.banner h2{
+    margin: 0px;
+    padding-top: 375px;
+    margin-left: 50px;
+}
+.banner p{
+    margin-left: 50px;
+}
+.banner a{
+    margin: 10px;
+    margin-left: 50px;
+    text-decoration: none;
+    color: #633490;
+}
+.banner .botao{
+    border: 3px solid white;
+    color: #00439F;
+    background-color: #ff1027;
+    text-decoration: none;
+    border-radius: 7px;
+    font-weight: bold;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 12px 10px 10px 10px;
 }
 .album img{
     height: 300px;
@@ -12,4 +96,21 @@
 .membros img{
     height: 200px;
     border-radius: 5px;
+}
+/* estilização do Footer */
+.footer{
+    display: flex;
+    background-color: #000000;
+    bottom: 0;
+    justify-content: space-around;
+    padding: 25px;
+    color: #ec8a02;
+}
+.greeting{
+    font-size: x-large;
+    padding-top: 20px;
+    padding-bottom: 15px;
+}
+.footer img{
+    height: 70px;
 }
