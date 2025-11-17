@@ -59,7 +59,7 @@ body{
 .banner{
     background-image: url('../css/imgs/bannerimg.png');
     background-size: cover;
-    background-position: center;
+    background-position: center center;
     background-repeat: no-repeat;
     height: 875px;
     width: 100%;
@@ -158,14 +158,38 @@ body{
     flex-direction: row;
     justify-content: space-around;
 }
+/* estilização do login e cadastro */
+.login-background{
+    background-image: url("../css/imgs/sabbath-login.webp");
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center 98px;
+    height: 100%;
+    width: 100%;
+}
+.login-container{
+    display: flex;
+    justify-content: center;
+}
+.login-card{
+    padding: 10%;
+}
+.
+.login-card h2{
+    margin-top: 0px;
+}
 /* estilização do Footer */
 .footer{
     display: flex;
     background-color: #000000;
-    bottom: 0;
+    bottom: 0px;
+    position: sticky;
     justify-content: space-around;
     padding: 25px;
     color: #ec8a02;
+    z-index: 0;
+    bottom: 0;
 }
 .greeting{
     font-size: x-large;
