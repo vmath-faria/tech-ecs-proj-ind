@@ -171,7 +171,7 @@ body{
     margin: 0;
 }
 .bodycadastro{
-    background-image: url("../css/imgs/sabbath-cadastro.webp");
+    background-image: url("../css/imgs/sabbath-cadastro.jpg");
     background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
@@ -183,21 +183,82 @@ body{
     display: flex;
     justify-content: center;
 }
+.cadastro-background{
+    color: #fefefe;
+    display: flex;
+    justify-content: center;
+}
 .login-box{
-    height: 100%;
+    height: 0;
     width: 15%;
-    margin-top: 8%;
+    margin-top: 4%;
 }
 .login-container{
     display: flex;
     justify-content: center;
     background-color: rgba(236, 138, 2, 0.7);
     width: 100%;
-    border-radius: 50px;
+    border-radius: 25px;
+    padding-top: 8%;
+    margin-bottom: 100%;
 }
 .login-card{
     padding: 10%;
-    margin-bottom: 11%;
+    margin-bottom: 10%;
+}
+
+.login-card h2{
+    margin-top: 0px;
+}
+.cadastro-background{
+    color: #fefefe;
+    display: flex;
+    justify-content: center;
+}
+.cadastro-box{
+    height: 70%;
+    width: 40%;
+    margin-top: 1.5%;
+}
+.cadastro-container{
+    display: flex;
+    justify-content: center;
+    background-color: rgba(236, 138, 2, 0.7);
+    width: 100%;
+    border-radius: 25px;
+    padding-top: 0%;
+    margin-bottom: 0%;
+}
+.cadastro-card{
+    padding-left: 8%;
+    padding-right: 8%;
+    padding-bottom: 3%;
+    margin-bottom: 0%;
+    display: flex;
+    gap: 15%;
+    margin-left: -5%;
+}
+.cadastro-inputs{
+    font-size:small;
+}
+.cadastro-inputs input{
+    background-color: #fefefe;
+    color: #000000;
+}
+.cadastro-select{
+    font-size:small;
+    display: flex;
+    flex-direction: column;
+    gap: 10%;
+}
+.cadastro-select h3{
+    margin-bottom: 0%;
+    margin-top: 19px;
+}
+.cadastro-select select{
+    background-color: rgba(236, 138, 2, 0.0);
+    border: solid;
+    color: #000000;
 }
 
 .login-card h2{
@@ -209,7 +270,7 @@ body{
     background-color: #000000;
     bottom: 0px;
     position: fixed;
-    margin-top: 10px;
+    margin-top: 10%;
     width: 100%;
     justify-content: space-around;
     padding: 5px;
