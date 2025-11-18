@@ -10,7 +10,6 @@
 }
 body{
     margin: 0;
-    background-color: #ec8a02;
 }
 /* estilização do Header */
 .header {
@@ -178,7 +177,7 @@ body{
     background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center 30px;
+    background-position: center 10px;
     margin: 0;
 }
 .login-background{
@@ -267,6 +266,20 @@ body{
 .login-card h2{
     margin-top: 0px;
 }
+/* estilização do quiz */
+.allcontentquiz{
+    height: 100%;
+}
+.pontuacaoEJogo{
+    background-image: url("../css/imgs/sabbath-quiz.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    height: 480px;
+    background-position-y: bottom;
+    background-repeat: no-repeat;
+    background-position: center 99px;
+    margin-top: 0;
+    }
 /* estilização do Footer */
 .footer{
     display: flex;
