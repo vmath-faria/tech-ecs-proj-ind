@@ -45,7 +45,7 @@
                         <h3>Insira sua Senha</h3>
                         <input type="password" id="senha_input" placeholder="Ex:T0ny1omm!">
                         <h3>Repita sua Senha</h3>
-                        <input type="text" id="repeat_input" placeholder="Ex:T0ny1omm!">
+                        <input type="password" id="repeat_input" placeholder="Ex:T0ny1omm!">
                     </div>
                     <div class="cadastro-select">
                         <h3>Qual o seu Álbum Favorito?</h3>
@@ -72,7 +72,7 @@
                             <option value="19">The Devil You Know</option>
                             <option value="20">13</option>
                         </select>
-                        <button onclick="cadastro_function()">Cadastrar-se!</button>
+                        <button onclick="cadastrar()">Cadastrar-se!</button>
                     </div>
                 </div>
             </div>
@@ -86,5 +86,67 @@
     </div>
 </body>
 <script>
+
+  // Array para armazenar empresas cadastradas para validação de código de ativação 
+  let listaEmpresasCadastradas = [];
+
+  function cadastrar() {
+    // aguardar();
+
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+    var nomeVar = username_input.value;
+    var emailVar = email_input.value;
+    var senhaVar = senha_input.value;
+    var confirmacaoSenhaVar = repeat_input.value;
+    var albumVar = album_select.value
+
+    // Verificando se há algum campo em branco
+    if (
+      nomeVar == "" ||
+      emailVar == "" ||
+      senhaVar == "" ||
+      confirmacaoSenhaVar == "" ||
+      albumVar == ""
+    ) {
+        alert("Preencha todos os campos")
+      return false;
+    }
+
+    // Enviando o valor da nova input
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        nomeServer: nomeVar,
+        emailServer: emailVar,
+        senhaServer: senhaVar,
+        idAlbumVincularServer: albumVar
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+            alert("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
+
+          setTimeout(() => {
+            window.location = "login.html";
+          }, "2000");
+
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+
+    return false;
+  }
 
 </script>
