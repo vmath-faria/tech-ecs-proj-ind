@@ -270,16 +270,102 @@ body{
 .allcontentquiz{
     height: 100%;
 }
-.pontuacaoEJogo{
+.quiz-background{
     background-image: url("../css/imgs/sabbath-quiz.jpg");
-    background-attachment: fixed;
     background-size: cover;
-    height: 480px;
-    background-position-y: bottom;
+    height: 80vh;
     background-repeat: no-repeat;
-    background-position: center 99px;
-    margin-top: 0;
     }
+.quiz-background .botao{
+    margin-top: 22%;
+    margin-left: 44.8%;
+    border: 3px solid white;
+    color: #00439F;
+    background-color: #D02729;
+    text-decoration: none;
+    border-radius: 7px;
+    font-weight: bold;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 12px 10px 10px 10px;
+}
+.pontuacao{
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(236, 138, 2, 0.5);
+    align-items: center;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+#pontuacaoDuranteJogo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#pontuacaoFinalJogo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#jogo{
+    color: #D02729;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 8%;
+    padding-right: -8%;
+    background-color: rgba(0, 67, 159, 0.7);
+    height: 86%;
+}
+#infoQuestao{
+    background-color: rgba(0, 67, 159, 0.9);
+    padding: 1%;
+    margin-top: -20%;
+    border-radius: 50px;
+}
+#infoQuestaoGeral{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: -6%;
+    margin-left: 9%;
+}
+#infoQuestaoGeral div{
+    margin-bottom: 4%;
+}
+#perguntaDaQuestaoAtual{
+    font-size: larger;
+}
+#opcoes input{
+
+  border-radius: 50%;
+  width: 19px;
+  height: 19px;
+
+  border: 2px solid #999999;
+  transition: 0.2s all linear;
+  margin-right: 3.5px;
+
+  position: relative;
+  top: 4px;
+}
+#botoes{
+    border: solid;
+    border-radius: 10px;
+    padding: 3%;
+    display: flex;
+    flex-direction: column;
+    gap: 12.5px;
+    margin-top: -2%;
+}
+#botoes button{
+    border: solid;
+    background-color: #D02729;
+    border-radius: 5px;
+    color: #00439F;
+}
 /* estilização do Footer */
 .footer{
     display: flex;
