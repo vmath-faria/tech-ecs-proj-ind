@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/styles.css">
+    <title>Login - Technical Ecstasy</title>
+</head>
+<body class="bodylogin">
+    <div class="header">
+        <a class="logo" href="index.html#">
+            <img src="./css/imgs/logo.png">
+        </a>
+        <ul class="navbar">
+            <li>
+                <a href="index.html#members">Membros</a>
+            </li>
+            <li>
+                <a href="index.html#eras">Eras da Banda</a>
+            </li>
+            <li>
+                <a href="quiz.html">Quiz</a>
+            </li>
+        </ul>
+        <ul class="logincadastro">
+            <li>
+                <a href="login.html">Login</a>
+            </li>
+            <li>
+                <a href="cadastro.html">Sign In</a>
+            </li>
+        </ul>
+    </div>
+        <div class="login-background">
+            <div class="login-box">
+                <div class="login-container">
+                    <div class="login-card">
+                        <h2>Faça seu Login!</h2>
+                        <div class="login-inputs">
+                            <h3>Insira seu Email</h3>
+                            <input type="text" id="email_input" placeholder="Ex:tony@iommi.com">
+                            <h3>Insira sua Senha</h3>
+                            <input type="password" id="senha_input" placeholder="Ex:T0ny1omm!">
+                        </div><br>
+                        <button class="button" onclick="entrar()">Fazer Login</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="footer">
+        <img src="./css/imgs/pilot.png">
+        <div class="greeting">Feito por Victor Matheus - 2025
+        </div>
+        <img src="./css/imgs/pilot.png">
+    </div>
+</body>
+<script>
+
+    function entrar() {
+        
+        var emailVar = email_input.value;
+        var senhaVar = senha_input.value;
+
+        if (emailVar == "" || senhaVar == "") {
+            alert('Preencha todos os campos!')
+            return false;
+        }
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+                    sessionStorage.ALBUM = JSON.stringify(json.album)
+
+                    setTimeout(function () {
+                        window.location = "dashboard.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+</script>
