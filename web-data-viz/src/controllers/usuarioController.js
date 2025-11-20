@@ -21,22 +21,20 @@ function autenticar(req, res) {
                         console.log(resultadoAutenticar);
 
 
-                        // albumModel.buscarAlbumPorUsuario(resultadoAutenticar[0].albumId)
-                        //     .then((resultadoalbum) => {
-                        //         if (resultadoalbum.length > 0) {
-                        //             res.json({
-                        //                 id: resultadoAutenticar[0].id,
-                        //                 email: resultadoAutenticar[0].email,
-                        //                 nome: resultadoAutenticar[0].nome,
-                        //                 senha: resultadoAutenticar[0].senha,
-                        //                 fkAlbum: resultadoalbum
-                        //             });
-                        //         } else {
-                        //             res.status(204).json({ album: [] });
-                        //         }
-
-                        res.json(resultadoAutenticar);
-                            
+                        albumModel.buscarAlbumPorUsuario(resultadoAutenticar[0].albumId)
+                            .then((resultadoalbum) => {
+                                if (resultadoalbum.length > 0) {
+                                    res.json({
+                                        id: resultadoAutenticar[0].id,
+                                        email: resultadoAutenticar[0].email,
+                                        nome: resultadoAutenticar[0].nome,
+                                        senha: resultadoAutenticar[0].senha,
+                                        fkAlbum: resultadoalbum
+                                    });
+                                } else {
+                                    res.status(204).json({ album: [] });
+                                }
+                            })
                     } else if (resultadoAutenticar.length == 0) {
                         res.status(403).send("Email e/ou senha inválido(s)");
                     } else {
