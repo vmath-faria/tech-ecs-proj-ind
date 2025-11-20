@@ -16,7 +16,7 @@ function inserir(idUsuario, primeira, segunda, terceira, quarta, quinta, sexta, 
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucaoSql = `
-        INSERT INTO usuario (fkUsuario, primeira, segunda, terceira, quarta, quinta, sexta, setima, oitava, qtCertas) VALUES ('${idUsuario}', '${primeira}', '${segunda}', '${terceira}', '${quarta}', '${quinta}', '${sexta}', '${setima}', '${oitava}', '${certas}');
+        INSERT INTO resultadoquiz (fkUsuario, primeira, segunda, terceira, quarta, quinta, sexta, setima, oitava, qtCertas) VALUES ('${idUsuario}', '${primeira}', '${segunda}', '${terceira}', '${quarta}', '${quinta}', '${sexta}', '${setima}', '${oitava}', '${certas}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
