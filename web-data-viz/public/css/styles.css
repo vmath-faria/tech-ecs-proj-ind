@@ -24,10 +24,10 @@ body{
 .navbar {
     display: flex;
     width: 500px;
-    margin-top: 19px;
+    margin-top: 37px;
     justify-content: space-between;
     list-style: none;
-    padding-top: 10px;
+    padding-bottom: 10px;
 }
 .navbar a{
     text-decoration: none;
@@ -40,7 +40,7 @@ body{
     font-size: x-large;
 }
 .logincadastro li{
-    margin-top: 2%;
+    margin-top: 7%;
 }
 .logincadastro a{
     margin: 30px;
@@ -366,6 +366,38 @@ body{
     border-radius: 5px;
     color: #00439F;
 }
+/* estilização da dashboard */
+.allcontentdashboard{
+    background-image: url("../css/imgs/sabbath-dashboard.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center 98px;
+    margin-top: -1.7%;
+    padding-top: 2%;
+    height: 90vh;
+}
+.dashboard-background{
+    margin-left: 4%;
+    margin-right: 4%;
+    margin-bottom: 4%;
+    margin-top: 1%;
+    height: 80%;
+    background-color: rgba(236, 138, 2, 0.5);
+    display: flex;
+    flex-direction: column;
+}
+.greeting-dashboard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1%;
+}
+.dados-dashboard{
+    flex-direction: row;
+    display: flex;
+}
+
 /* estilização do Footer */
 .footer{
     display: flex;

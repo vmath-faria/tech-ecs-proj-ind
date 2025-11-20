@@ -64,6 +64,9 @@
         if (emailVar == "" || senhaVar == "") {
             alert('Preencha todos os campos!')
             return false;
+        }else if((emailVar.includes('@')||emailVar.includes('.')||senhaVar.length>'8')==false){
+            alert('Corrija os valores inseridos!')
+            return false
         }
 
         console.log("FORM LOGIN: ", emailVar);
@@ -80,7 +83,8 @@
             })
         }).then(function (resposta) {
             console.log("ESTOU NO THEN DO entrar()!")
-
+            console.log(resposta);
+            
             if (resposta.ok) {
                 console.log(resposta);
 

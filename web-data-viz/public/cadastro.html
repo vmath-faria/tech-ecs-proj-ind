@@ -111,7 +111,15 @@
     ) {
         alert("Preencha todos os campos")
       return false;
-    }
+    }else if(
+      nomeVar.length<5||emailVar.includes("@")==false||
+      emailVar.endsWith(".com")==false||senhaVar.length<9||
+      confirmacaoSenhaVar!=senhaVar||senhaVar.includes("#")==false||
+      senhaVar.includes("!")==false||senhaVar.includes("@")==false||
+      senhaVar.includes("$")==false||senhaVar.includes("%")==false){
+        alert("Insira valores válidos")
+        return false
+      }
 
     // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
