@@ -1,9 +1,9 @@
 var albumModel = require("../models/albumModel");
 
 function buscarAlbumPorUsuario(req, res) {
-  var idUsuario = req.params.idUsuario;
+  var albumId = req.boy.albumId;
 
-  albumModel.buscarAlbumPorUsuario(idUsuario).then((resultado) => {
+  albumModel.buscarAlbumPorUsuario(albumId).then((resultado) => {
     if (resultado.length > 0) {
       res.status(200).json(resultado);
     } else {
