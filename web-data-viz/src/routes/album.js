@@ -3,7 +3,7 @@ var router = express.Router();
 
 var albumController = require("../controllers/albumController");
 
-router.get("/:albumId", function (req, res) {
+router.get("/buscarAlbumPorUsuario", function (req, res) {
   albumController.buscarAlbumPorUsuario(req, res);
 });
 
