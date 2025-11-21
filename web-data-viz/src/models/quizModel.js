@@ -1,9 +1,12 @@
 var database = require("../database/config")
 
-function autenticar(email, senha) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function autenticar(): ", email, senha)
+function requisitar(email, senha) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function requisitar(): ", email, senha)
     var instrucaoSql = `
-        SELECT idUsuario, username, email, fkAlbum as album FROM usuario WHERE email = '${email}' AND senha = '${senha}';
+        select (select count(fkUsuario) from resultadoquiz where qtCertas<3) as "Am I Going Insane",
+            (select count(fkUsuario) from resultadoquiz where qtCertas<7 and qtCertas>=3) as "Neon Knight",
+                (select count(fkUsuario) from resultadoquiz where qtCertas>=7) as "Supernaut" from resultadoquiz
+                    limit 1;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -23,6 +26,6 @@ function inserir(idUsuario, primeira, segunda, terceira, quarta, quinta, sexta, 
 }
 
 module.exports = {
-    autenticar,
+    requisitar,
     inserir
 };
