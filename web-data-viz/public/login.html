@@ -97,6 +97,30 @@
                     sessionStorage.ID_USUARIO = json.idUsuario;
                     sessionStorage.ALBUM_USUARIO = json.album;
 
+            fetch("/quiz/requisitar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    idUsuario: sessionStorage.ID_USUARIO,
+                })
+            }).then(function (resposta => resposta.json())
+                .then(json=> {
+                console.log("ESTOU NO THEN DO requisitar()!")
+                console.log(resposta);
+                
+                if (resposta.ok) {
+                    console.log(resposta);
+                    console.log("O REQUISITAR FUNCIONA!")
+
+                    resposta.json().then(json => {
+                        console.log(json);
+                        console.log(JSON.stringify(json));
+                        sessionStorage.BURRO_USUARIO = json.email;
+                        sessionStorage.MEDIO_USUARIO = json.username;
+                        sessionStorage.INTELIGENTE_USUARIO = json.idUsuario;
+                        sessionStorage.QUESTAO_USUARIO = json.album;
                     setTimeout(function () {
                         window.location = "dashboard.html";
                     }, 1000); // apenas para exibir o loading
@@ -118,5 +142,5 @@
 
         return false;
     }
-
+}
 </script>

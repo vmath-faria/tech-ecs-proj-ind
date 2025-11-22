@@ -1,5 +1,4 @@
 var usuarioModel = require("../models/usuarioModel");
-var albumModel = require("../models/albumModel");
 
 function autenticar(req, res) {
     var email = req.body.emailServer;
@@ -20,21 +19,6 @@ function autenticar(req, res) {
                     if (resultadoAutenticar.length == 1) {
                         console.log(resultadoAutenticar);
                         console.log("FUNCIONA")
-
-                        // albumModel.buscarAlbumPorUsuario(resultadoAutenticar[0].albumId)
-                        //     .then((resultadoalbum) => {
-                        //         if (resultadoalbum.length > 0) {
-                        //             res.json({
-                        //                 id: resultadoAutenticar[0].id,
-                        //                 email: resultadoAutenticar[0].email,
-                        //                 nome: resultadoAutenticar[0].nome,
-                        //                 senha: resultadoAutenticar[0].senha,
-                        //                 fkAlbum: resultadoalbum
-                        //             });
-                        //         } else {
-                        //             res.status(204).json({ album: [] });
-                        //         }
-                        //     })
 
                         res.status(200).json(resultadoAutenticar[0]);
                     } else if (resultadoAutenticar.length == 0) {
