@@ -16,7 +16,7 @@
                 <a href="index.html#members">Membros</a>
             </li>
             <li>
-                <a href="index.html#eras">Eras da Banda</a>
+                <a href="dashboard.html">Dashboards</a>
             </li>
             <li>
                 <a href="quiz.html">Quiz</a>
@@ -42,11 +42,11 @@
                             <h3>Insira sua Senha</h3>
                             <input type="password" id="senha_input" placeholder="Ex:T0ny1omm!">
                         </div><br>
-                        <div class="buttondiv">
                             <button class="button" id="buttonentrar" onclick="entrar()">Fazer Login</button>
-                            <button class="button" id="buttonquiz" style="display: none;">Fazer Quiz</button>
-                            <button class="button" id="buttonhistoria" style="display: none;">Ver História</button>
-                            <button class="button" id="buttondash" style="display: none;">Ver Dashboards</button>
+                        <div class="buttondiv" id="botaodiv" style="display: none;">
+                            <button class="button" onclick="quizfunction()">Fazer Quiz</button>
+                            <button class="button" onclick="historiafunction()">Ver História</button>
+                            <button class="button" onclick="dashfunction()">Ver Dashboards</button>
                         </div>
                     </div>
                 </div>
@@ -109,15 +109,12 @@
                 })
             
                 alert("Login Realizado!")
-                buttonentrar.style.display = none
-                buttonquiz.style.display = block
-                buttonhistoria.style.display = block
-                buttondash.style.display = block
+                ativarbutton()
             
             } else {
 
                 console.log("Houve um erro ao tentar realizar o login!");
-
+                alert("Email ou senha inválidos!")
                 resposta.text().then(texto => {
                     console.error(texto);
                 });
@@ -130,4 +127,17 @@
         return false;
     }
 
+    function ativarbutton(){
+        document.getElementById("botaodiv").style.display = "flex"
+        document.getElementById("buttonentrar").style.display = "none"
+    }
+    function quizfunction(){
+        window.location = "quiz.html"
+    }
+    function historiafunction(){
+        window.location = "index.html"
+    }
+    function dashfunction(){
+        window.location = "dashboard.html"
+    }
 </script>

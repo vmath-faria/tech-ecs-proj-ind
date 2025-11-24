@@ -16,7 +16,7 @@
                 <a href="index.html#members">Membros</a>
             </li>
             <li>
-                <a href="index.html#eras">Eras da Banda</a>
+                <a href="dashboard.html">Dashboards</a>
             </li>
             <li>
                 <a href="quiz.html">Quiz</a>
@@ -45,6 +45,7 @@
                     </div>
                 </div>
                 <div class="album-dashboard">
+                    <span></span>
                 </div>
             </div>
         </div>
@@ -85,7 +86,7 @@
     function obterDadosGrafico() {
 
         fetch("/quiz/requisitar", {
-            method: "POST",
+            method: "GET",
             headers: {
                 "Content-Type": "application/json"
             }
@@ -138,14 +139,21 @@
         let dados = {
             labels: labels,
             datasets: [{
-                label: 'Umidade',
+                label: 'Am I Going Insane - <=3 Questões',
                 data: [],
                 fill: false,
                 borderColor: 'rgb(75, 192, 192)',
                 tension: 0.1
             },
             {
-                label: 'Temperatura',
+                label: 'Neon Knight - <=6 Questões',
+                data: [],
+                fill: false,
+                borderColor: 'rgb(199, 52, 52)',
+                tension: 0.1
+            },
+            {
+                label: 'Supernaut - >=7 Questões',
                 data: [],
                 fill: false,
                 borderColor: 'rgb(199, 52, 52)',
@@ -158,12 +166,12 @@
         console.log(resposta)
 
         // Inserindo valores recebidos em estrutura para plotar o gráfico
-        for (i = 0; i < resposta.length; i++) {
-            var registro = resposta[i];
-            labels.push(registro.momento_grafico);
-            dados.datasets[0].data.push(registro.umidade);
-            dados.datasets[1].data.push(registro.temperatura);
-        }
+        // for (i = 0; i < resposta.length; i++) {
+        //     var registro = resposta[i];
+        //     labels.push(registro.momento_grafico);
+        //     dados.datasets[0].data.push(registro.umidade);
+        //     dados.datasets[1].data.push(registro.temperatura);
+        // }
 
         console.log('----------------------------------------------')
         console.log('O gráfico será plotado com os respectivos valores:')
@@ -175,13 +183,13 @@
 
         // Criando estrutura para plotar gráfico - config
         const config = {
-            type: 'line',
+            type: 'doughnut',
             data: dados,
         };
 
         // Adicionando gráfico criado em div na tela
         let myChart = new Chart(
-            document.getElementById(`myChartCanvas${idAquario}`),
+            document.getElementById(`grafico-dashboard`),
             config
         );
 

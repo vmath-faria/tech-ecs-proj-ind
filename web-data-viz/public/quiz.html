@@ -18,7 +18,7 @@
                 <a href="index.html#members">Membros</a>
             </li>
             <li>
-                <a href="index.html#eras">Eras da Banda</a>
+                <a href="dashboard.html">Dashboards</a>
             </li>
             <li>
                 <a href="quiz.html">Quiz</a>
@@ -87,7 +87,7 @@
                     <div id="botoes">
                         <button onclick="submeter()" id="btnSubmeter">Submeter resposta</button>
                         <button onclick="avancar()" id="btnProx" disabled>Avançar para próxima questão</button>
-                        <!-- <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button> -->
+                        <button onclick="dashboard()" id="btnConcluir" disabled>Ir para Dashboards</button>
                         <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Tentar novamente</button>
                     </div>
                 </div>
@@ -161,7 +161,7 @@
         },
 
         {
-            pergunta: "Que cover o BLACK SABBATH durante a turnê desse álbum?",
+            pergunta: "Que cover o BLACK SABBATH fez durante a turnê desse álbum?",
             alternativaA: "Smoke on the Water",
             alternativaB: "Apache",
             alternativaC: "Evil Woman",
@@ -220,8 +220,12 @@
 
         btnSubmeter.disabled = false
         btnProx.disabled = true
-        // btnConcluir.disabled = true
+        btnConcluir.disabled = true
+        btnConcluir.style.display = "none"
+        btnConcluir.style.backgroundColor = "#000000"
         btnTentarNovamente.disabled = true
+        btnTentarNovamente.style.backgroundColor = "#000000"
+
     }
 
     function preencherHTMLcomQuestaoAtual(index) {
@@ -362,8 +366,12 @@
         btnProx.style.backgroundColor = "#000000"
         btnSubmeter.disabled = true
         btnSubmeter.style.backgroundColor = "#000000"
-        // btnConcluir.disabled = true
+        btnConcluir.disabled = false
+        btnConcluir.style.display = "block"
+        btnConcluir.style.backgroundColor = "#D02729"
+        btnTentarNovamente.style.display = "block"
         btnTentarNovamente.disabled = false
+        btnTentarNovamente.style.backgroundColor = "#D02729"
 
         fetch("/quiz/inserir", {
             method: "POST",
@@ -414,5 +422,8 @@
         return false;
     }
 
+    function dashboard(){
+        window.location = "dashboard.html"
+    }
 
 </script>

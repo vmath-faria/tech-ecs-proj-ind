@@ -25,7 +25,7 @@ function inserir(acertouPrimeira, acertouSegunda, acertouTerceira, acertouQuarta
     //  e na ordem de inserção dos dados.
     var instrucaoSql = `
         INSERT INTO resultadoquiz (fkUsuario, acertou, fkQuestao) VALUES
-            ('${idUsuario}', '${acertouPrimeira}', '${primeira}),
+            (${idUsuario}, ${acertouPrimeira}, ${primeira}),
                 (${idUsuario}, ${acertouSegunda}, ${segunda}),
                     (${idUsuario}, ${acertouTerceira}, ${terceira}),
                         (${idUsuario}, ${acertouQuarta}, ${quarta}),
@@ -33,7 +33,7 @@ function inserir(acertouPrimeira, acertouSegunda, acertouTerceira, acertouQuarta
                                 (${idUsuario}, ${acertouSexta}, ${sexta}),
                                     (${idUsuario}, ${acertouSetima}, ${setima}),
                                         (${idUsuario}, ${acertouOitava}, ${oitava});
-        UPDATE usuario SET qtAcertadas=${certas} WHERE fkUsuario=${idUsuario};
+        UPDATE usuario SET qtAcertadas=${certas} WHERE idUsuario=${idUsuario};
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
