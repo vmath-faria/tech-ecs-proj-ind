@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/styles.css">
     <title>Dashboard - Technical Ecstasy</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="header">
@@ -39,7 +40,8 @@
             </div>
             <div class="dados-dashboard">
                 <div class="dashboard-container">
-                    <div class="grafico-dashboard">        
+                    <div class="grafico-dashboard">
+                        <canvas id="grafico"></canvas>
                     </div>
                     <div class="pergunta-dashboard">
                     </div>
@@ -128,42 +130,40 @@
     // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
     // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
     // A função *plotarGrafico* também invoca a função *atualizarGrafico*
-    function plotarGrafico(resposta, idAquario) {
+    function plotarGrafico() {
 
         console.log('iniciando plotagem do gráfico...');
 
         // Criando estrutura para plotar gráfico - labels
-        let labels = [];
 
         // Criando estrutura para plotar gráfico - dados
         let dados = {
-            labels: labels,
+            labels: "Proporção de Usuários por Questões Acertadas",
             datasets: [{
                 label: 'Am I Going Insane - <=3 Questões',
-                data: [],
+                data: [aigi],
                 fill: false,
-                borderColor: 'rgb(75, 192, 192)',
+                borderColor: '#d02729', 
                 tension: 0.1
             },
             {
                 label: 'Neon Knight - <=6 Questões',
-                data: [],
+                data: [nk],
                 fill: false,
-                borderColor: 'rgb(199, 52, 52)',
+                borderColor: '#633490',
                 tension: 0.1
             },
             {
                 label: 'Supernaut - >=7 Questões',
-                data: [],
+                data: [sn],
                 fill: false,
-                borderColor: 'rgb(199, 52, 52)',
+                borderColor: '#ec8a02',
                 tension: 0.1
             }]
         };
 
         console.log('----------------------------------------------')
         console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-        console.log(resposta)
 
         // Inserindo valores recebidos em estrutura para plotar o gráfico
         // for (i = 0; i < resposta.length; i++) {

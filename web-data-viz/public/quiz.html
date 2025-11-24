@@ -319,8 +319,8 @@
                 pontuacaoFinal++
                 certas++
                 document.getElementById("spanCertas").innerHTML = certas
-                numeroDaQuestaoAtual++
                 listaDeQuestoes[numeroDaQuestaoAtual].usuarioAcertou = 1
+                numeroDaQuestaoAtual++
             } else if (option.checked && option.value !== respostaQuestaoAtual) {
                 const wrongLabelId = option.labels[0].id
 
@@ -389,7 +389,6 @@
                 usuarioAcertou6Server: listaDeQuestoes[5].usuarioAcertou,
                 usuarioAcertou7Server: listaDeQuestoes[6].usuarioAcertou,
                 usuarioAcertou8Server: listaDeQuestoes[7].usuarioAcertou,
-                certasServer: certas,
                 idPergunta1Server: listaDeQuestoes[0].idPergunta,
                 idPergunta2Server: listaDeQuestoes[1].idPergunta,
                 idPergunta3Server: listaDeQuestoes[2].idPergunta,
@@ -407,9 +406,21 @@
                 if (resposta.ok) {
                     alert("Inserção Feita com Sucesso!");
 
-                    setTimeout(() => {
-                        window.location = "dashboard.html";
-                    }, "2000");
+                    fetch("/quiz/atualizar", {
+                        method: "SET",
+                        headers: {
+                        "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            idUsuarioServer: sessionStorage.ID_USUARIO,
+                            certasServer: certas
+                            }),
+                    }).then(function (resposta) {
+                        console.log("resposta: ", resposta);
+                    
+                        if (resposta.ok) {
+                            alert("Atualização Feita com Sucesso!");
+                        }})
 
                 } else {
                     throw "Houve um erro ao tentar inserir o resultado do quiz!";

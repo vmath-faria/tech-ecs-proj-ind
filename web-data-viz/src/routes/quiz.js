@@ -12,4 +12,8 @@ router.post("/inserir", function (req, res) {
     quizController.inserir(req, res);
 });
 
+router.post("/atualizar", function (req, res) {
+    quizController.atualizar(req, res);
+});
+
 module.exports = router;

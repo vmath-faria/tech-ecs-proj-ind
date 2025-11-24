@@ -28,7 +28,6 @@ function inserir(req, res) {
     var acertouSexta = req.body.usuarioAcertou6Server;
     var acertouSetima = req.body.usuarioAcertou7Server;
     var acertouOitava = req.body.usuarioAcertou8Server;
-    var certas = req.body.certasServer;
     var primeira = req.body.idPergunta1Server;
     var segunda = req.body.idPergunta2Server;
     var terceira = req.body.idPergunta3Server;
@@ -56,8 +55,6 @@ function inserir(req, res) {
         res.status(400).send("A sétima questão está undefined!");
     } else if (oitava == undefined) {
         res.status(400).send("A oitava questão está undefined!");
-    } else if (certas == undefined) {
-        res.status(400).send("A soma das questões certas está undefined!");
     } else if (acertouPrimeira == undefined) {
         res.status(400).send("A questão 1 está undefined!");
     } else if (acertouSegunda == undefined) {
@@ -76,13 +73,42 @@ function inserir(req, res) {
         res.status(400).send("A questão 8 está undefined!");
     } else if (idUsuario == undefined) {
         res.status(400).send("O idUsuario está undefined!");
+    } else {
+
+        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+        quizModel.inserir(acertouPrimeira, acertouSegunda, acertouTerceira, acertouQuarta, acertouQuinta, acertouSexta, acertouSetima, acertouOitava,
+            primeira, segunda, terceira, quarta, quinta, sexta, setima, oitava, idUsuario)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o insert! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
+function atualizar(req, res) {
+    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+    var certas = req.body.certasServer;
+    var idUsuario = req.body.idUsuarioServer;
+
+    // Faça as validações dos valores
+    if (certas == undefined) {
+        res.status(400).send("A soma das questões certas está undefined!");
     } else if (idUsuario == undefined) {
         res.status(400).send("O idUsuario está undefined!");
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        quizModel.inserir(acertouPrimeira, acertouSegunda, acertouTerceira, acertouQuarta, acertouQuinta, acertouSexta, acertouSetima, acertouOitava,
-            certas, primeira, segunda, terceira, quarta, quinta, sexta, setima, oitava, idUsuario)
+        quizModel.atualizar(certas, idUsuario)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -102,5 +128,6 @@ function inserir(req, res) {
 
 module.exports = {
     requisitar,
-    inserir
+    inserir,
+    atualizar
 }
