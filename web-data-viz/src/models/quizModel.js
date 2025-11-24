@@ -9,7 +9,7 @@ function requisitar() {
                     (select q.idQuestao from questao as q join resultadoquiz as r on r.fkQuestao=q.idQuestao
                             group by q.idQuestao order by SUM(r.acertou) desc limit 1) as "MQ"
                                 from resultadoquiz join usuario on fkUsuario=idUsuario
-                                    join questao on fkQuestao=idQuestao;    
+                                    join questao on fkQuestao=idQuestao limit 1;    
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
