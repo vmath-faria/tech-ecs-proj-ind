@@ -1,13 +1,13 @@
 var database = require("../database/config")
 
-function requisitar(idUsuario) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function requisitar(): ", idUsuario)
+function requisitar() {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function requisitar(): ",)
     var instrucaoSql = `
-        select (select count(fkUsuario) from resultadoquiz where qtCertas<3) as "Am I Going Insane",
-            (select count(fkUsuario) from resultadoquiz where qtCertas<7 and qtCertas>=3) as "Neon Knight",
-                (select count(fkUsuario) from resultadoquiz where qtCertas>=7) as "Supernaut",
+        select (select count(fkUsuario) from resultadoquiz where qtCertas<3) as "AIGI",
+            (select count(fkUsuario) from resultadoquiz where qtCertas<7 and qtCertas>=3) as "NK",
+                (select count(fkUsuario) from resultadoquiz where qtCertas>=7) as "SN",
                     (select q.idQuestao from questao as q join resultadoquiz as r on r.fkQuestao=q.idQuestao
-                            group by q.idQuestao order by SUM(r.acertou) desc limit 1) as "maxquestao"
+                            group by q.idQuestao order by SUM(r.acertou) desc limit 1) as "MQ"
                                 from resultadoquiz join usuario on fkUsuario=idUsuario
                                     join questao on fkQuestao=idQuestao;    
     `;

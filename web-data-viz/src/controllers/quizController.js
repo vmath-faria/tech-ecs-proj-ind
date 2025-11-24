@@ -1,26 +1,13 @@
 var quizModel = require("../models/quizModel");
 
-function requisitar(req, res) {
-    var idUsuario = req.body.idUsuarioServer
+function requisitar(res) {
 
-    if (idUsuario == undefined) {
-        res.status(400).send("O idUsuario está undefined!");
-    } else {
-
-        quizModel.requisitar(idUsuario)
+        quizModel.requisitar()
             .then(
                 function (resultadoRequisitar) {
                     console.log(`\nResultados encontrados: ${resultadoRequisitar.length}`);
                     console.log(`Resultados: ${JSON.stringify(resultadoRequisitar)}`); // transforma JSON em String
 
-                    if (resultadoRequisitar.length == 1) {
-                        console.log(resultadoRequisitar);
-
-                    } else if (resultadoRequisitar.length == 0) {
-                        res.status(403).send("idUsuario inválido");
-                    } else {
-                        res.status(403).send("Mais de um usuário com o mesmo idUsuario!");
-                    }
                 }
             ).catch(
                 function (erro) {
@@ -30,8 +17,6 @@ function requisitar(req, res) {
                 }
             );
     }
-
-}
 
 function inserir(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html

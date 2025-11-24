@@ -42,7 +42,12 @@
                             <h3>Insira sua Senha</h3>
                             <input type="password" id="senha_input" placeholder="Ex:T0ny1omm!">
                         </div><br>
-                        <button class="button" onclick="entrar()">Fazer Login</button>
+                        <div class="buttondiv">
+                            <button class="button" id="buttonentrar" onclick="entrar()">Fazer Login</button>
+                            <button class="button" id="buttonquiz" style="display: none;">Fazer Quiz</button>
+                            <button class="button" id="buttonhistoria" style="display: none;">Ver História</button>
+                            <button class="button" id="buttondash" style="display: none;">Ver Dashboards</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -95,38 +100,20 @@
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.username;
                     sessionStorage.ID_USUARIO = json.idUsuario;
-                    sessionStorage.ALBUM_USUARIO = json.album;
-
-            fetch("/quiz/requisitar", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    idUsuario: sessionStorage.ID_USUARIO,
+                    sessionStorage.ALBUM_USUARIO = json.fkAlbum;
+                    sessionStorage.YRALBUM_USUARIO = json.yrRelease;
+                    sessionStorage.TITULOALBUM_USUARIO = json.titulo;
+                    sessionStorage.DESCRICAOALBUM_USUARIO = json.descricao;
+                    sessionStorage.VOCALISTAALBUM_USUARIO = json.vocalista;
+                    
                 })
-            }).then(function (resposta => resposta.json())
-                .then(json=> {
-                console.log("ESTOU NO THEN DO requisitar()!")
-                console.log(resposta);
-                
-                if (resposta.ok) {
-                    console.log(resposta);
-                    console.log("O REQUISITAR FUNCIONA!")
-
-                    resposta.json().then(json => {
-                        console.log(json);
-                        console.log(JSON.stringify(json));
-                        sessionStorage.BURRO_USUARIO = json.email;
-                        sessionStorage.MEDIO_USUARIO = json.username;
-                        sessionStorage.INTELIGENTE_USUARIO = json.idUsuario;
-                        sessionStorage.QUESTAO_USUARIO = json.album;
-                    setTimeout(function () {
-                        window.location = "dashboard.html";
-                    }, 1000); // apenas para exibir o loading
-
-                });
-
+            
+                alert("Login Realizado!")
+                buttonentrar.style.display = none
+                buttonquiz.style.display = block
+                buttonhistoria.style.display = block
+                buttondash.style.display = block
+            
             } else {
 
                 console.log("Houve um erro ao tentar realizar o login!");
@@ -142,5 +129,5 @@
 
         return false;
     }
-}
+
 </script>
