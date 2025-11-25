@@ -6,7 +6,7 @@ function requisitar() {
         select (select count(fkUsuario) from resultadoquiz where qtAcertadas<3) as "AIGI",
             (select count(fkUsuario) from resultadoquiz where qtAcertadas<7 and qtAcertadas>=3) as "NK",
                 (select count(fkUsuario) from resultadoquiz where qtAcertadas>=7) as "SN",
-                    (select q.idQuestao from questao as q join resultadoquiz as r on r.fkQuestao=q.idQuestao
+                    (select q.descricao from questao as q join resultadoquiz as r on r.fkQuestao=q.idQuestao
                             group by q.idQuestao order by SUM(r.acertou) desc limit 1) as "MQ"
                                 from resultadoquiz join usuario on fkUsuario=idUsuario
                                     join questao on fkQuestao=idQuestao limit 1;    

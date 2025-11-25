@@ -45,11 +45,18 @@
                     <div class="grafico-dashboard">
                         <canvas id="grafico"></canvas>
                     </div>
-                    <div class="pergunta-dashboard">
+                    <div id="pergunta_div" class="pergunta-dashboard">
+                        Pergunta mais acertada:<span id="pergunta_span"></span>
                     </div>
                 </div>
-                <div class="album-dashboard">
-                    <span></span>
+                <div id="album_div" class="album-dashboard">
+                    <span id="album_img"></span>
+                    <div class="album_text">
+                        <div id="album_titulo"></div>
+                        <div id="album_yr"></div>
+                        <div id="album_vocalista"></div>
+                        <div id="album_desc"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -65,15 +72,17 @@
 </body>
 <script>
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-    var aigi=``
-    var nk=``
-    var sn=``
-    var mq=``
+    var aigi = ''
+    var nk = ''
+    var sn = ''
+    var mq = ''
+    var idAlbum = sessionStorage.ALBUM_USUARIO
     var yrRelease = sessionStorage.YRALBUM_USUARIO
     var titulo = sessionStorage.TITULOALBUM_USUARIO
     var descricao = sessionStorage.DESCRICAOALBUM_USUARIO
     var vocalista = sessionStorage.VOCALISTAALBUM_USUARIO
-    var dados = ""
+    var imgAlbum = ``
+    var dados = []
 
     window.onload = obterDadosGrafico()
 
@@ -106,18 +115,16 @@
 
                 resposta.json().then(json => {
                     console.log(json[0].AIGI);
-                    console.log(JSON.stringify(json)); 
+                    console.log(JSON.stringify(json));
                     aigi = json[0].AIGI
                     nk = json[0].NK
                     sn = json[0].SN
                     mq = json[0].MQ
-                    console.log(aigi)
-                    console.log(nk)
-                    console.log(sn)
-                    console.log(mq)
+                    plotarGrafico(aigi, nk, sn)
+                    adicionarPergunta(mq)
+                    adicionarAlbum(idAlbum, titulo, yrRelease, descricao, vocalista)
                 })
-                
-                plotarGrafico()
+
 
             } else {
 
@@ -138,9 +145,11 @@
     // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
     // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
     // A função *plotarGrafico* também invoca a função *atualizarGrafico*
-    function plotarGrafico() {
+    function plotarGrafico(aigi, nk, sn) {
 
+        dados = [aigi, nk, sn]
         console.log('iniciando plotagem do gráfico...');
+        console.log(`Dados recebidos: ${dados}`)
 
         // Criando estrutura para plotar gráfico - labels
 
@@ -153,20 +162,69 @@
                 labels: ['Am I Going Insane', 'Neon Knight', 'Supernaut'],
                 datasets: [{
                     label: 'Proporção de Acertos por Usuário',
-                    data: [aigi, nk, sn],
-                    borderWidth: 2
-                }]
+                    backgroundColor: ['#d02729', '#633490', '#ec8a02'],
+                    data: dados,
+                    borderWidth: 2,
+                    fontColor: ['#d02729', '#633490', '#ec8a02']
+                }],
             },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
+        })
+        Chart.defaults.font.family = "Futura BQ";
+        Chart.defaults.color = '#000000';
     }
 
+    function adicionarPergunta() {
+        pergunta_span.innerHTML = `<br>${mq}`
+    }
+
+    function adicionarAlbum(idAlbum, titulo, yrRelease, descricao, vocalista) {
+        if (idAlbum == "1") {
+            imgAlbum = `./css/imgs/debut.jpg`
+        } else if (idAlbum == "2") {
+            imgAlbum = `./css/imgs/paranoid.jpg`
+        } else if (idAlbum == "3") {
+            imgAlbum = `./css/imgs/mor.jpg`
+        } else if (idAlbum == "4") {
+            imgAlbum = `./css/imgs/vol4.jpg`
+        } else if (idAlbum == "5") {
+            imgAlbum = `./css/imgs/sbs.jpg`
+        } else if (idAlbum == "6") {
+            imgAlbum = `./css/imgs/sabotage.jpg`
+        } else if (idAlbum == "7") {
+            imgAlbum = `./css/imgs/techecs.jpg`
+        } else if (idAlbum == "8") {
+            imgAlbum = `./css/imgs/nsd.jpg`
+        } else if (idAlbum == "9") {
+            imgAlbum = `./css/imgs/hnh.jpg`
+        } else if (idAlbum == "10") {
+            imgAlbum = `./css/imgs/mobrules.jpg`
+        } else if (idAlbum == "11") {
+            imgAlbum = `./css/imgs/bornagain.jpg`
+        } else if (idAlbum == "12") {
+            imgAlbum = `./css/imgs/7star.jpg`
+        } else if (idAlbum == "13") {
+            imgAlbum = `./css/imgs/eternalidol.jpg`
+        } else if (idAlbum == "14") {
+            imgAlbum = `./css/imgs/headlesscross.jpg`
+        } else if (idAlbum == "15") {
+            imgAlbum = `./css/imgs/tyr.jpg`
+        } else if (idAlbum == "16") {
+            imgAlbum = `./css/imgs/dehumanizer.jpg`
+        } else if (idAlbum == "17") {
+            imgAlbum = `./css/imgs/crosspurposes.jpg`
+        } else if (idAlbum == "18") {
+            imgAlbum = `./css/imgs/forbidden.jpg`
+        } else if (idAlbum == "19") {
+            imgAlbum = `./css/imgs/thedevilyouknow.jpg`
+        } else if (idAlbum == "20") {
+            imgAlbum = `./css/imgs/13.jpg`
+        }
+        album_img.innerHTML = `<img src="${imgAlbum}" class="img-album">`
+        album_titulo.innerHTML = titulo
+        album_yr.innerHTML = yrRelease
+        album_vocalista.innerHTML = vocalista
+        album_desc.innerHTML = descricao
+    }
 
     // Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
     // buscando a última medida inserida em tabela contendo as capturas,

@@ -380,7 +380,7 @@ body{
     background-position: center 98px;
     margin-top: -1.7%;
     padding-top: 2%;
-    height: 90vh;
+    height: 85vh;
 }
 .dashboard-background{
     margin-left: 4%;
@@ -401,8 +401,52 @@ body{
 .dados-dashboard{
     flex-direction: row;
     display: flex;
+    margin-left: 10%;
+}
+.grafico-dashboard{
+    height: 75%;
+    margin-top: 1.5%;
+}
+.pergunta-dashboard{
+    font-size: x-large;
+    color: #001623;
+    margin-top: 2%;
+}
+#pergunta_span{
+    color: #633490;
+}
+.album-dashboard{
+    display: flex;
+    flex-direction: row;
+    margin-left: 10%;
+}
+.img-album{
+    height: 225px;
+    margin-top: 7%;
+}
+.album_text{
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    margin-top: 7%;
 }
 
+#album_titulo{
+    font-size: xx-large;
+    margin-bottom: 10px;
+}
+#album_yr{
+    font-size: x-large;
+    margin-bottom: 10px;
+}
+#album_vocalista{
+    font-size: x-large;
+    margin-bottom: 10px;
+}
+#album_desc{
+    font-size: larger;
+    margin-bottom: 10px;
+}
 /* estilização do Footer */
 .footer{
     display: flex;
