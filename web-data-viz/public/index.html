@@ -9,7 +9,7 @@
     <style>body{background-color: #EC8A02;}</style>
 </head>
 
-<body>
+<body onload="onloadindex()">
     <div class="header">
         <a class="logo" href="index.html#">
             <img src="./css/imgs/logo.png">
@@ -417,3 +417,10 @@
 </body>
 
 </html>
+<script>
+    function onloadindex(){
+        if(sessionStorage.NOME_USUARIO==undefined){
+            window.location="login.html"
+        }
+    }
+</script>

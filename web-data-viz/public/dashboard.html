@@ -99,6 +99,10 @@
     //     Para ajustar o "select", ajuste o comando sql em src/models
     function obterDadosGrafico() {
 
+        if(sessionStorage.NOME_USUARIO==undefined){
+            window.location="login.html"
+        }
+
         fetch("/quiz/requisitar", {
             method: "GET",
             headers: {
