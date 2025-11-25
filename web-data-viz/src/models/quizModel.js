@@ -3,9 +3,9 @@ var database = require("../database/config")
 function requisitar() {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function requisitar(): ",)
     var instrucaoSql = `
-        select (select count(fkUsuario) from resultadoquiz where qtAcertadas<3) as "AIGI",
-            (select count(fkUsuario) from resultadoquiz where qtAcertadas<7 and qtAcertadas>=3) as "NK",
-                (select count(fkUsuario) from resultadoquiz where qtAcertadas>=7) as "SN",
+        select (select count(idUsuario) from usuario where qtAcertadas<3) as "AIGI",
+            (select count(idUsuario) from usuario where qtAcertadas<7 and qtAcertadas>=3) as "NK",
+                (select count(idUsuario) from usuario where qtAcertadas>=7) as "SN",
                     (select q.descricao from questao as q join resultadoquiz as r on r.fkQuestao=q.idQuestao
                             group by q.idQuestao order by SUM(r.acertou) desc limit 1) as "MQ"
                                 from resultadoquiz join usuario on fkUsuario=idUsuario

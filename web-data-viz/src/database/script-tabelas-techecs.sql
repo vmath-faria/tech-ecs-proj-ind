@@ -53,14 +53,12 @@ insert into album (idAlbum, titulo, descricao, vocalista, yrRelease) values
 																		(18, 'Forbidden', 'Álbum Rap!', 'Tony Martin', 1995),
 																			(19, 'The Devil You Know', 'Último álbum do Ronnie James DIO', 'Ronnie James DIO', 2009),
 																				(20, '13', 'Último álbum do BLACK SABBATH', 'Ozzy Osbourne', 2013);
-select * from resultadoquiz join usuario on fkUsuario=idUsuario
-	join album on fkAlbum=idAlbum join questao on fkQuestao=idQuestao;
-select (select count(qtAcertadas) from usuario where qtAcertadas<=3) as "AIGI",
-	(select count(qtAcertadas) from usuario where qtAcertadas>3 and qtAcertadas<=6) as "NK",
-		(select count(qtAcertadas) from usuario where qtAcertadas>=7) as "SN" from usuario;
-select q.descricao from questao as MQ
-	join resultadoquiz r on r.fkQuestao = q.idQuestao
-		group by q.idQuestao, q.descricao order by SUM(r.acertou)
-			desc limit 1;
+select (select count(idUsuario) from usuario where qtAcertadas<3) as "AIGI",
+            (select count(idUsuario) from usuario where qtAcertadas<7 and qtAcertadas>=3) as "NK",
+                (select count(idUsuario) from usuario where qtAcertadas>=7) as "SN",
+                    (select q.descricao from questao as q join resultadoquiz as r on r.fkQuestao=q.idQuestao
+                            group by q.idQuestao order by SUM(r.acertou) desc limit 1) as "MQ"
+                                from resultadoquiz join usuario on fkUsuario=idUsuario
+                                    join questao on fkQuestao=idQuestao limit 1;
 
 
