@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <title>Dashboard - Technical Ecstasy</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
     <div class="header">
         <a class="logo" href="index.html#">
@@ -63,14 +65,15 @@
 </body>
 <script>
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-    var aigi=0
-    var nk=0
-    var sn=0
-    var mq=0
-    var yrRelease=sessionStorage.YRALBUM_USUARIO
-    var titulo=sessionStorage.TITULOALBUM_USUARIO
-    var descricao=sessionStorage.DESCRICAOALBUM_USUARIO
-    var vocalista=sessionStorage.VOCALISTAALBUM_USUARIO
+    var aigi=``
+    var nk=``
+    var sn=``
+    var mq=``
+    var yrRelease = sessionStorage.YRALBUM_USUARIO
+    var titulo = sessionStorage.TITULOALBUM_USUARIO
+    var descricao = sessionStorage.DESCRICAOALBUM_USUARIO
+    var vocalista = sessionStorage.VOCALISTAALBUM_USUARIO
+    var dados = ""
 
     window.onload = obterDadosGrafico()
 
@@ -95,22 +98,27 @@
         }).then(function (resposta) {
             console.log("ESTOU NO THEN DO requisitar()!")
             console.log(resposta);
-            
+
             if (resposta.ok) {
                 console.log(resposta);
                 console.log("FUNCIONA O REQUISITAR!")
 
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-                    aigi = json.AIGI;
-                    nk = json.NK;
-                    sn = json.SN;
-                    mq = json.MQ;
-                    
-                })
 
-            
+                resposta.json().then(json => {
+                    console.log(json[0].AIGI);
+                    console.log(JSON.stringify(json)); 
+                    aigi = json[0].AIGI
+                    nk = json[0].NK
+                    sn = json[0].SN
+                    mq = json[0].MQ
+                    console.log(aigi)
+                    console.log(nk)
+                    console.log(sn)
+                    console.log(mq)
+                })
+                
+                plotarGrafico()
+
             } else {
 
                 console.log("Houve um erro ao obter os dados do MySQL!");
@@ -137,67 +145,31 @@
         // Criando estrutura para plotar gráfico - labels
 
         // Criando estrutura para plotar gráfico - dados
-        let dados = {
-            labels: "Proporção de Usuários por Questões Acertadas",
-            datasets: [{
-                label: 'Am I Going Insane - <=3 Questões',
-                data: [aigi],
-                fill: false,
-                borderColor: '#d02729', 
-                tension: 0.1
+        const ctx = document.getElementById('grafico');
+
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Am I Going Insane', 'Neon Knight', 'Supernaut'],
+                datasets: [{
+                    label: 'Proporção de Acertos por Usuário',
+                    data: [aigi, nk, sn],
+                    borderWidth: 2
+                }]
             },
-            {
-                label: 'Neon Knight - <=6 Questões',
-                data: [nk],
-                fill: false,
-                borderColor: '#633490',
-                tension: 0.1
-            },
-            {
-                label: 'Supernaut - >=7 Questões',
-                data: [sn],
-                fill: false,
-                borderColor: '#ec8a02',
-                tension: 0.1
-            }]
-        };
-
-        console.log('----------------------------------------------')
-        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-
-        // Inserindo valores recebidos em estrutura para plotar o gráfico
-        // for (i = 0; i < resposta.length; i++) {
-        //     var registro = resposta[i];
-        //     labels.push(registro.momento_grafico);
-        //     dados.datasets[0].data.push(registro.umidade);
-        //     dados.datasets[1].data.push(registro.temperatura);
-        // }
-
-        console.log('----------------------------------------------')
-        console.log('O gráfico será plotado com os respectivos valores:')
-        console.log('Labels:')
-        console.log(labels)
-        console.log('Dados:')
-        console.log(dados.datasets)
-        console.log('----------------------------------------------')
-
-        // Criando estrutura para plotar gráfico - config
-        const config = {
-            type: 'doughnut',
-            data: dados,
-        };
-
-        // Adicionando gráfico criado em div na tela
-        let myChart = new Chart(
-            document.getElementById(`grafico-dashboard`),
-            config
-        );
-
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
     }
 
 
     // Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
-    // buscando a última medida inserida em tabela contendo as capturas, 
+    // buscando a última medida inserida em tabela contendo as capturas,
 
     //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
     //     Para ajustar o "select", ajuste o comando sql em src/models

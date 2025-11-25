@@ -1,13 +1,13 @@
 var quizModel = require("../models/quizModel");
 
-function requisitar(res) {
+function requisitar(req, res) {
 
         quizModel.requisitar()
             .then(
                 function (resultadoRequisitar) {
                     console.log(`\nResultados encontrados: ${resultadoRequisitar.length}`);
                     console.log(`Resultados: ${JSON.stringify(resultadoRequisitar)}`); // transforma JSON em String
-
+                    res.json(resultadoRequisitar);
                 }
             ).catch(
                 function (erro) {

@@ -4,8 +4,8 @@ var router = express.Router();
 var quizController = require("../controllers/quizController");
 
 //Recebendo os dados do html e direcionando para a função requisitar de quizController.js
-router.get("/requisitar", function (res) {
-    quizController.requisitar(res);
+router.get("/requisitar", function (req, res) {
+    quizController.requisitar(req, res);
 })
 
 router.post("/inserir", function (req, res) {
