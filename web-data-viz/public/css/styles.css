@@ -404,8 +404,7 @@ body{
     margin-left: 10%;
 }
 .grafico-dashboard{
-    height: 75%;
-    margin-top: 1.5%;
+    height: 81.2%;
 }
 .pergunta-dashboard{
     font-size: x-large;
@@ -423,6 +422,7 @@ body{
 .img-album{
     height: 225px;
     margin-top: 7%;
+    border-radius: 3%;
 }
 .album_text{
     display: flex;

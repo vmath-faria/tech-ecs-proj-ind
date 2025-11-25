@@ -111,15 +111,20 @@
     ) {
         alert("Preencha todos os campos")
       return false;
-    }else if(
-      nomeVar.length<5||emailVar.includes("@")==false||
-      emailVar.endsWith(".com")==false||senhaVar.length<9||
-      confirmacaoSenhaVar!=senhaVar||(senhaVar.includes("#")==false&&
+    }else if(nomeVar.length<5){
+      alert("O nickname deve ter mais de 5 caracteres!")
+    }else if(emailVar.includes("@")==false||emailVar.endsWith(".com")==false){
+      alert("Insira um E-Mail válido!")
+    }else if(senhaVar.length<9){
+      alert("A senha está muito curta!")
+    }else if(confirmacaoSenhaVar!=senhaVar){
+      alert("As senhas não batem!")
+    }else if(senhaVar.includes("#")==false&&
       senhaVar.includes("!")==false&&senhaVar.includes("@")==false&&
-      senhaVar.includes("$")==false&&senhaVar.includes("%")==false)){
-        alert("Insira valores válidos")
-        return false
-      }
+        senhaVar.includes("$")==false&&senhaVar.includes("%")==false){
+      alert("Insira uma senha válida - Necessário haver um caractere especial!")
+      return false
+    }
 
     // Enviando o valor da nova input
     fetch(`/usuarios/cadastrar`, {

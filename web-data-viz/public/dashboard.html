@@ -163,7 +163,7 @@
         new Chart(ctx, {
             type: 'pie',
             data: {
-                labels: ['Am I Going Insane', 'Neon Knight', 'Supernaut'],
+                labels: ['Am I Going Insane, <4 Corretas', 'Neon Knight, <7 Corretas', 'Supernaut, >=7 Corretas'],
                 datasets: [{
                     label: 'Proporção de Acertos por Usuário',
                     backgroundColor: ['#d02729', '#633490', '#ec8a02'],
@@ -172,6 +172,11 @@
                     fontColor: ['#d02729', '#633490', '#ec8a02']
                 }],
             },
+            options: {
+                layout: {
+                    padding: 1
+                }
+            }
         })
         Chart.defaults.font.family = "Futura BQ";
         Chart.defaults.color = '#000000';
